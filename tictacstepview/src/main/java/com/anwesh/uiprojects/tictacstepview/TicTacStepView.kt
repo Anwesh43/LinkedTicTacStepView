@@ -8,6 +8,7 @@ import android.view.View
 import android.view.MotionEvent
 import android.content.Context
 import android.app.Activity
+import android.content.pm.ActivityInfo
 import android.graphics.*
 import android.util.Log
 
@@ -258,6 +259,7 @@ class TicTacStepView(ctx : Context) : View(ctx) {
     companion object {
         fun create(activity : Activity) : TicTacStepView {
             val view : TicTacStepView = TicTacStepView(activity)
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             activity.setContentView(view)
             return view
         }
