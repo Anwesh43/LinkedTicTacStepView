@@ -16,7 +16,7 @@ val nodes : Int = 5
 val lines : Int = 2
 val parts : Int = 2
 val scGap : Float = 0.1f / parts
-val scDiv : Double = 1.0 / parts
+val scDiv : Double = (1.0 / parts) + 0.01
 val STROKE_FACTOR : Int = 120
 val SIZE_FACTOR : Int = 3
 val TIC_TAC_PARTS : Int = 3
@@ -119,7 +119,7 @@ class TicTacStepView(ctx : Context) : View(ctx) {
         fun update(cb : (Float) -> Unit) {
             val k : Float = scale.updateScale(lines, TIC_TAC_PARTS.getSquare(), dir)
             scale += k
-            Log.d("debug mode:", "$k")
+            //Log.d("debug mode:", "$k")
             if (Math.abs(scale - prevScale) > 1) {
                 scale = prevScale + dir
                 dir = 0f
@@ -131,6 +131,7 @@ class TicTacStepView(ctx : Context) : View(ctx) {
         fun startUpdating(cb : () -> Unit) {
             if (dir == 0f) {
                 dir = 1f - 2 * prevScale
+                Log.d("dir is ", "$dir")
                 cb()
             }
         }
