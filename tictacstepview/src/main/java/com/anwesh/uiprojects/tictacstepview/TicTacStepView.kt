@@ -20,6 +20,9 @@ val scDiv : Double = (1.0 / parts) + 0.01
 val STROKE_FACTOR : Int = 120
 val SIZE_FACTOR : Int = 3
 val TIC_TAC_PARTS : Int = 3
+val DELAY : Long = 25
+val COLOR : Int = Color.parseColor("#4A148C")
+val BACK_COLOR : Int = Color.parseColor("#BDBDBD")
 
 fun Int.getInverse() : Float = 1f / this
 
@@ -87,7 +90,7 @@ fun Canvas.drawTTSNode(i : Int, scale : Float, paint : Paint) {
     paint.style = Paint.Style.STROKE
     paint.strokeWidth = Math.min(w, h) / STROKE_FACTOR
     paint.strokeCap = Paint.Cap.ROUND
-    paint.color = Color.parseColor("#4A148C")
+    paint.color = COLOR
     save()
     translate(gap * (i + 1), h / 2)
     drawLines(size, sc1, paint)
@@ -143,7 +146,7 @@ class TicTacStepView(ctx : Context) : View(ctx) {
             if (animated) {
                 cb()
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(DELAY)
                     view.invalidate()
                 } catch(ex : Exception) {
 
@@ -241,7 +244,7 @@ class TicTacStepView(ctx : Context) : View(ctx) {
         private val tts : TicTacStep = TicTacStep(0)
 
         fun render(canvas : Canvas, paint : Paint) {
-            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            canvas.drawColor(BACK_COLOR)
             tts.draw(canvas, paint)
             animator.animate {
                 tts.update {i, scl ->
