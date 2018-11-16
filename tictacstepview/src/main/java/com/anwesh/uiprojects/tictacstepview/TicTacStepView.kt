@@ -253,4 +253,12 @@ class TicTacStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : TicTacStepView {
+            val view : TicTacStepView = TicTacStepView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
